@@ -1,6 +1,22 @@
 let humanScore = 0;
 let computerScore = 0;
 
+let score = document.createElement("p");
+let scoreNode = document.createTextNode(`Human Score = ${humanScore} Computer Score = ${computerScore}`);
+score.appendChild(scoreNode);
+
+let roundResult = document.createElement("p");
+let roundNode = document.createTextNode("");
+roundResult.appendChild(roundNode);
+
+let endResult = document.createElement("p");
+let endNode = document.createTextNode("");
+endResult.appendChild(endNode);
+
+let div = document.getElementById("results");
+div.appendChild(score);
+div.appendChild(roundResult);
+div.appendChild(endResult);
 
 /*function to get computer's choice*/
 function getComputerChoice(){
@@ -21,30 +37,36 @@ function getComputerChoice(){
 function playRound(humanChoice, computerChoice){    
     if (humanChoice === "rock" && computerChoice === "scissors"){
         humanScore++;
-        console.log("You win! Rock beats Scissors!");
+        scoreNode.textContent = `Human Score = ${humanScore} Computer Score = ${computerScore}`;
+        roundNode.textContent = "You win! Rock beats Scissors!";
     }
     else if (humanChoice === "paper" && computerChoice === "rock"){
         humanScore++;
-        console.log("You win! Paper beats Rock!");
+        scoreNode.textContent = `Human Score = ${humanScore} Computer Score = ${computerScore}`;
+        roundNode.textContent = "You win! Paper beats Rock!";
     }
     else if (humanChoice === "scissors" && computerChoice === "paper"){
         humanScore++;
-        console.log("You win! Scissors beats Paper!");
+        scoreNode.textContent = `Human Score = ${humanScore} Computer Score = ${computerScore}`;
+        roundNode.textContent = "You win! Scissors beats Paper!";
     }
     else if (humanChoice === "rock" && computerChoice === "paper"){
         computerScore++;
-        console.log("You lose! Paper beats Rock!");
+        scoreNode.textContent = `Human Score = ${humanScore} Computer Score = ${computerScore}`;
+        roundNode.textContent = "You lose! Paper beats Rock!";
     }
     else if (humanChoice === "paper" && computerChoice === "scissors"){
         computerScore++;
-        console.log("You lose! Scissors beats Paper!");
+        scoreNode.textContent = `Human Score = ${humanScore} Computer Score = ${computerScore}`;
+        roundNode.textContent = "You lose! Scissors beats Paper!";
     }
     else if (humanChoice === "scissors" && computerChoice === "rock"){
         computerScore++;
-        console.log("You lose! Rock beats Scissors!");
+        scoreNode.textContent = `Human Score = ${humanScore} Computer Score = ${computerScore}`;
+        roundNode.textContent = "You lose! Rock beats Scissors!";
     }
     else {
-        console.log("It's a tie!");
+        roundNode.textContent = "It's a tie!";
     }
         
     }
@@ -54,26 +76,11 @@ buttons.forEach((button) => {
     button.addEventListener("click", () => {
         playRound(button.id, getComputerChoice());
 
-        
-        const score = document.createElement("p");
-        const node = document.createTextNode(`Human Score = ${humanScore} Computer Score = ${computerScore}`);
-        score.style.color = "red";
-        score.appendChild(node);
-
-        const div = document.getElementById("results");
-        div.appendChild(score);
-
         if (humanScore >= 5){
-            const endResult = document.createElement("p");
-            const node2 = document.createTextNode("Human Wins!");
-            endResult.appendChild(node2);
-            div.appendChild(endResult);
+            endNode.textContent = "Human Wins!"
         }
         else if (computerScore >=5){
-            const endResult = document.createElement("p");
-            const node2 = document.createTextNode("Computer Wins!");
-            endResult.appendChild(node2);
-            div.appendChild(endResult)
+            endNode.textContent = "Computer Wins!"
         }
      });
  });
