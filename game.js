@@ -1,6 +1,7 @@
 let humanScore = 0;
 let computerScore = 0;
 
+
 /*function to get computer's choice*/
 function getComputerChoice(){
     var x = Math.floor(Math.random() * 3);
@@ -52,7 +53,28 @@ const buttons = document.querySelectorAll("button");
 buttons.forEach((button) => {
     button.addEventListener("click", () => {
         playRound(button.id, getComputerChoice());
-        console.log(`Human Score = ${humanScore} Computer Score = ${computerScore}`);
+
+        
+        const score = document.createElement("p");
+        const node = document.createTextNode(`Human Score = ${humanScore} Computer Score = ${computerScore}`);
+        score.style.color = "red";
+        score.appendChild(node);
+
+        const div = document.getElementById("results");
+        div.appendChild(score);
+
+        if (humanScore >= 5){
+            const endResult = document.createElement("p");
+            const node2 = document.createTextNode("Human Wins!");
+            endResult.appendChild(node2);
+            div.appendChild(endResult);
+        }
+        else if (computerScore >=5){
+            const endResult = document.createElement("p");
+            const node2 = document.createTextNode("Computer Wins!");
+            endResult.appendChild(node2);
+            div.appendChild(endResult)
+        }
      });
  });
 /*displays the winner of the playGame function
